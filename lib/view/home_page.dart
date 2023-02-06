@@ -22,11 +22,11 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 6,
             ),
-            _cashbackOffer(),
+            _rechargeNow(),
             const SizedBox(
               height: 6,
             ),
-            _rechargeNow(),
+            _cashbackOffer(),
           ],
         ),
       ),
@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                         width: 100,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
-                            color: Colors.blue),
+                            color: Colors.redAccent),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
@@ -193,7 +193,8 @@ class _HomePageState extends State<HomePage> {
                     children: const [
                       Icon(
                         Icons.add_circle,
-                        color: Colors.black26,
+                        color: Colors.black45,
+                        size: 17,
                       ),
                       SizedBox(
                         width: 5,
@@ -226,7 +227,8 @@ class _HomePageState extends State<HomePage> {
                     children: const [
                       Icon(
                         Icons.phone,
-                        color: Colors.black26,
+                        color: Colors.black45,
+                        size: 17,
                       ),
                       SizedBox(
                         width: 5,
@@ -259,7 +261,8 @@ class _HomePageState extends State<HomePage> {
                     children: const [
                       Icon(
                         Icons.message_outlined,
-                        color: Colors.black26,
+                        color: Colors.black45,
+                        size: 17,
                       ),
                       SizedBox(
                         width: 5,
@@ -381,7 +384,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  //Subscription function start
+  //Recharge Now Function End
+
+  //CashBack Offer function start
   Widget _cashbackOffer() {
     return Container(
       height: 250,
@@ -410,15 +415,33 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  customWidget(),
+                  customWidget(
+                      Image.network(
+                        'https://cdn01.grameenphone.com/sites/default/files/GP_Offer_cash_back_on_20tk_by_Recharge_tk_21_Mobile_image.jpg',
+                        fit: BoxFit.fill,
+                      ),
+                      const Text('Click to Recharge now!',
+                          style: TextStyle(color: Colors.blue, fontSize: 15))),
                   const SizedBox(
                     width: 12,
                   ),
-                  customWidget(),
+                  customWidget(
+                      Image.network(
+                        'https://cdn01.grameenphone.com/sites/default/files/offfers-images/GP_Offer_3_hours_unlimited_internet_Pack_tile_Image.jpg',
+                        fit: BoxFit.fill,
+                      ),
+                      const Text('Click to Recharge now!',
+                          style: TextStyle(color: Colors.blue, fontSize: 15))),
                   const SizedBox(
                     width: 12,
                   ),
-                  customWidget(),
+                  customWidget(
+                      Image.network(
+                        'https://i-techbd.com/wp-content/uploads/2020/10/gp-5gb-free.jpg',
+                        fit: BoxFit.fill,
+                      ),
+                      const Text('Click to Recharge now!',
+                          style: TextStyle(color: Colors.blue, fontSize: 15))),
                 ],
               ),
             )
@@ -428,12 +451,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-//Subscription function end
+//CashBack Offer function end
 
-  Widget customWidget() {
+  Widget customWidget(Image image, Text text) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-      elevation: 12,
+      elevation: 3,
       child: SizedBox(
         height: MediaQuery.of(context).size.height * .2,
         width: MediaQuery.of(context).size.height * .3,
@@ -441,12 +464,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height * .14,
-              decoration: BoxDecoration(
-                  color: Colors.red, borderRadius: BorderRadius.circular(18)),
-              child: Image.network(
-                'https://cdn01.grameenphone.com/sites/default/files/GP_Offer_cash_back_on_20tk_by_Recharge_tk_21_Mobile_image.jpg',
-                fit: BoxFit.contain,
-              ),
+              width: MediaQuery.of(context).size.height * .3,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(18)),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(18), child: image),
             ),
             const SizedBox(
               height: 12,
@@ -454,11 +476,8 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.only(left: 15),
               child: Row(
-                children: const [
-                  Text(
-                    'Click to Recharge now!',
-                    style: TextStyle(color: Colors.blue, fontSize: 15),
-                  ),
+                children: [
+                  text,
                   SizedBox(
                     width: 5,
                   ),
