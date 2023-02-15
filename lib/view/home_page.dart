@@ -37,45 +37,84 @@ class _HomePageState extends State<HomePage> {
   AppBar _appBar() {
     return AppBar(
       elevation: 0,
-      toolbarHeight: 76,
+      toolbarHeight: 80,
       leading: Padding(
         padding: const EdgeInsets.only(top: 18, bottom: 18, right: 5, left: 10),
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border.all(width: 2, color: Colors.white),
-              borderRadius: BorderRadius.circular(100)),
-          child: const CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'),
+        child: InkWell(
+          onTap: () {
+
+          },
+          child: Container(
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(width: 1, color: Colors.white),
+                ),
+            child: const CircleAvatar(
+              // radius: 30.0,
+              backgroundImage: NetworkImage(
+                  'https://avatars.githubusercontent.com/u/23038515?v=4'),
+            ),
           ),
         ),
       ),
       titleSpacing: 2,
-      title: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Azizul Hakim',
-            style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
-          ),
-          Row(
-            children: const [
-              Text(
-                '01789398972',
-                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
-              ),
-              SizedBox(
-                width: 3,
-              ),
-              Icon(
-                Icons.keyboard_arrow_down_sharp,
-                color: Colors.white,
-                size: 15,
-              )
-            ],
-          )
-        ],
+      title: InkWell(
+        onTap: () {
+          showModalBottomSheet(
+            elevation: 0,
+              barrierColor: Colors.blue.shade50.withOpacity(.3),
+              context: context,
+              builder: (context) {
+                return Wrap(
+
+                  children: const [
+                    SizedBox(
+                      height: 50,
+                      child: ListTile(
+                        leading: Text('Edit your profile'),
+                        // title: Text('Share'),
+                        trailing: Icon(Icons.arrow_forward_ios_sharp, color: Colors.blue,size: 12,),
+                      ),
+                    ),
+                    Divider(height: 2, color: Colors.black26,),
+                    ListTile(
+                      leading: Icon(Icons.copy),
+                      title: Text('Copy Link'),
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.edit),
+                      title: Text('Edit'),
+                    ),
+                  ],
+                );
+              },);
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Azizul Hakim',
+              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+            ),
+            Row(
+              children: const [
+                Text(
+                  '01789398972',
+                  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
+                ),
+                SizedBox(
+                  width: 3,
+                ),
+                Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  color: Colors.white,
+                  size: 15,
+                )
+              ],
+            )
+          ],
+        ),
       ),
       actions: [
         IconButton(
